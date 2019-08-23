@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'pg'
 require_relative './lib/Bookmark.rb'
 
 
@@ -12,6 +13,17 @@ class BookmarkManager < Sinatra::Base
     @bookmarks = Bookmark.all
      erb:'bookmarks/index'
   end
+
+  get '/bookmarks/new' do
+    erb:'bookmarks/new'
+  end
+
+  post '/bookmarks' do
+    @bookmarks = Bookmark.create(url: params[:url])
+     redirect '/bookmarks'
+  end
+
+
 
   run! if app_file == $0
 end
