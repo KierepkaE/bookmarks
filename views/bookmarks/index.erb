@@ -3,26 +3,28 @@
 <ul style = 'list-style:none'>
 <br>
   <% @bookmarks.each do |bookmark| %>
-    <li
-    style='margin:5px'
-     id="bookmark-<%= bookmark.id %>">
-
-      <a
-      style ='color: black; text-decoration: none; padding: 5px'
-      href="<%= bookmark.url %>" target="_blank">
-        <%= bookmark.title %>
-        <br>
-      </a>
-      <form action="/bookmarks/<%= bookmark.id %>" method="post">
-        <input type='hidden' name='_method' value='DELETE'/>
-        <input
-         type="submit" value="delete it" />
+  <li id="bookmark-<%= bookmark.id %>">
+    <a href="<%= bookmark.url %>" target="_blank">
+      <%= bookmark.title %>
+    </a>
+    <form action="/bookmarks/<%= bookmark.id %>" method="post">
+      <input type='hidden' name='_method' value='DELETE'/>
+      <input type="submit" value="delete it" />
+    </form>
+    <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
+      <input type="submit" value="edit it" />
+    </form>
+    <form action="/bookmarks/<%= bookmark.id %>/comments/new" method="get">
+      <input type="submit" value="comment it" />
       </form>
-       <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
-        <input type="submit" value="change it" />
-      </form>
-    </li>
+    <ul style = 'list-style:none'>
+  <% bookmark.comments.each do |comment| %>
+    <li><%= comment.text %></li>
   <% end %>
+</ul>
+  </li>
+<% end %>
+
 </ul>
 <p>
   <%= flash[:notice] %>
