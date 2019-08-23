@@ -7,21 +7,38 @@
     <a href="<%= bookmark.url %>" target="_blank">
       <%= bookmark.title %>
     </a>
+    <br>
     <form action="/bookmarks/<%= bookmark.id %>" method="post">
       <input type='hidden' name='_method' value='DELETE'/>
       <input type="submit" value="delete it" />
     </form>
+    <br>
     <form action="/bookmarks/<%= bookmark.id %>/edit" method="get">
       <input type="submit" value="edit it" />
     </form>
+    <br>
     <form action="/bookmarks/<%= bookmark.id %>/comments/new" method="get">
       <input type="submit" value="comment it" />
       </form>
-    <ul style = 'list-style:none'>
-  <% bookmark.comments.each do |comment| %>
-    <li><%= comment.text %></li>
-  <% end %>
-</ul>
+      <br>
+     <form action="/bookmarks/<%= bookmark.id %>/tags/new" method="get">
+
+      <div>
+      </ul>	        <h4>Comments</h4>
+        <ul style = 'list-style:none'>
+          <% bookmark.comments.each do |comment| %>
+            <li><%= comment.text %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div>
+        <h4>Tags</h4>
+        <ul style = 'list-style:none'>
+          <% bookmark.tags.each do |tag| %>
+            <li><%= tag.content %></li>
+          <% end %>
+        </ul>
+      </div>
   </li>
 <% end %>
 

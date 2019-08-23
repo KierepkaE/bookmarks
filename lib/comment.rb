@@ -1,4 +1,6 @@
 require_relative './database_connection.rb'
+require_relative './tag.rb'
+require_relative './bookmark_tag.rb'
 
 
 
