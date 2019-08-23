@@ -1,8 +1,16 @@
 <h3>Bookmarks:</h3>
-<ul style='list-style:none'>
-<%@bookmarks.each do |bookmark|%>
-<li><%= bookmark%></li>
-<%end%>
+<ul>
+  <% @bookmarks.each do |bookmark| %>
+    <li id="bookmark-<%= bookmark.id %>">
+      <a href="<%= bookmark.url %>" target="_blank">
+        <%= bookmark.title %>
+      </a>
+      <form action="/bookmarks/<%= bookmark.id %>" method="post">
+        <input type='hidden' name='_method' value='DELETE'/>
+        <input type="submit" value="Delete" />
+      </form>
+    </li>
+  <% end %>
 </ul>
 
 <br>
@@ -10,5 +18,7 @@
 <br>
 <br>
 
+<a style='text-decoration:none; color:black; letter-spacing: 2px'  href='/bookmarks/new'>
+<p style='text-decoration:none'>add more</p>
 <a style='text-decoration:none; color:black; letter-spacing: 2px'  href='/'>
 <p style='text-decoration:none'>back</p>
