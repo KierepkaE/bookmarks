@@ -1,6 +1,11 @@
 <body style='background: url(https://previews.dropbox.com/p/thumb/AAj4GUm72GW_yGFnNDR2bgMcAJTaIlShtQtTyEs5olaJs94y3BRd9KEHjnloViBYQ7J7VTigDhGKnC5UXNHSspqcVsYH_H_pB1utVkrLTgSe3RzIr_JDHiinJBw9pL6bIE5BCT_ehZIW0uK55T_2T6nwb2ycWd0HXCScHtoQ2NwvPpbqW0rAXNIF-25YBc4TcRWkVWobYPh3hkrjiGvuHlnhBxLn8EoYMT6xBTIhnrGoATYsManePVxDugC2TUWED5I55WIeLw-cISFTbFFboZOGKH8h0D9lMkvv4N2tCJKORiS2CT3OjLKYYbNjZsirboP8uo9TVV5-WrFdt-en6oVT/p.jpeg?fv_content=true&size_mode=5); color: black; letter-spacing: 2px'>
-<a style='text-decoration:none; color:black; letter-spacing: 2px'  href='/bookmarks'>
-<p style='text-decoration:none'>see bookmarks</p>
-<a style='text-decoration:none; color:black; letter-spacing: 2px'  href='/bookmarks/new'>
-<p style='text-decoration:none'>add bookmark</p>
+<ul style='list-style:none' >
+  <% @tag.bookmarks.each do |bookmark| %>
+    <li >
+      <a href="<%= bookmark.url %>" target="_blank">
+        <%= bookmark.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 </body>
