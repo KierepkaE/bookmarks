@@ -13,8 +13,7 @@ require_relative './bookmark.rb'
 
   def self.create(content:)
     result = DatabaseConnection.query("SELECT * FROM tags WHERE content = '#{content}';").first
-    Tag.new(id: result[0]['id'], content: result[0]['content'])
-     if !result
+    if !result
       result = DatabaseConnection.query("INSERT INTO tags (content) VALUES('#{content}') RETURNING id, content;").first
     end
     Tag.new(id: result['id'], content: result['content'])
